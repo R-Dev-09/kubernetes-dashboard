@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "es2020",
+    "rootDir": "",
+    "outDir": "../../dist/www/"
+  },
+  "lib": ["es2020", "dom"]
+}

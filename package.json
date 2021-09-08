@@ -1,0 +1,70 @@
+{
+  "name": "kubernetes-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "author": "Ronny van Dael <vandael.dev@gmail.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start:svelte": "tsc-watch -p src/svelte/tsconfig.json --onSuccess \"node dist/www/main.js\"",
+    "dev": "concurrently --kill-others \"pnpm:electron-dev\" \"pnpm:svelte-dev\"",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "out:win": "rollup -c && tsc && electron-builder build --win --publish never",
+    "publish:win": "rollup -c && tsc && electron-builder build --win --publish always",
+    "svelte-dev": "rollup -c -w",
+    "electron-dev": "tsc-watch --onSuccess \"electron .\""
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "@tsconfig/svelte": "^2.0.1",
+    "electron": "^14.0.0",
+    "electron-builder": "^22.11.7",
+    "electron-reload": "^2.0.0-alpha.1",
+    "node-sass": "^6.0.1",
+    "rollup": "^2.56.3",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.39.0",
+    "svelte": "^3.42.4",
+    "svelte-check": "^2.2.5",
+    "svelte-preprocess": "^4.9.2",
+    "tsc-watch": "^4.5.0",
+    "tslib": "^2.3.1",
+    "typescript": "4.4.2"
+  },
+  "dependencies": {
+    "sirv-cli": "^1.0.14"
+  },
+  "build": {
+    "appId": "kubernetes-dashboard",
+    "directories": {
+      "output": "out"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "R-Dev-09",
+        "repo": "kubernetes-dashboard"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Kubernetes Dashboard",
+      "license": "COPYING.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
