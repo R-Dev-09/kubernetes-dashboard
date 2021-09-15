@@ -1,13 +1,12 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+contextBridge.exposeInMainWorld('windowAPI', {
+  minimize: () => ipcRenderer.send('window', 'minimize'),
+  toggle: () => ipcRenderer.send('window', 'toggle'),
+  close: () => ipcRenderer.send('window', 'close')
+});
+
 contextBridge.exposeInMainWorld('api', {
-    send: (channel: string, data: unknown) => {
-      const validChannels = ['toMain', 'requestSystemInfo'];
-      if (validChannels.includes(channel)) ipcRenderer.send(channel, data);
-    },
-    receive: (channel: string, func: (...args: unknown[]) => void) => {
-      const validChannels = ['fromMain', 'getSystemInfo'];
-      if (validChannels.includes(channel)) ipcRenderer.on(channel, (_, ...args) => func(...args));
-    }
-  }
-);
+  send: (data: Record<string, any>) => ipcRenderer.send('toMain', data),
+  receive: (channel: string, cb: Function) => ipcRenderer.on(channel, (_, ...args) => cb(...args))
+});

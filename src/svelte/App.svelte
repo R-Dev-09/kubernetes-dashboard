@@ -1,49 +1,98 @@
 <script lang=ts>
-	export let name: string;
+	import Router, { location } from 'svelte-spa-router';
+	import { startCase } from 'lodash/string';
+	import { Cluster, Configuration, CustomResourceDefinition, Network, Security, Storage, Workload } from './pages';
+	import { Menu, Nav, Header, Icon } from './UI';
+	import { windowStore } from './lib';
 
-	let chrome: string = null;
-	let node: string = null;
-	let electron: string = null;
+	const routes = {
+		'/cluster': Cluster,
+		'/workload': Workload,
+		'/configuration': Configuration,
+		'/network': Network,
+		'/security': Security,
+		'/storage': Storage,
+		'/custom-resource-definition': CustomResourceDefinition
+	};
 
-	globalThis.api.send('requestSystemInfo', null);
-	globalThis.api.receive('getSystemInfo', data => {
-		chrome = data.chrome;
-		node = data.node;
-		electron = data.electron;
-	});
+	const iconSize = {height: 18, width: 18};
+
+	globalThis.api.send({channel: 'window', req: 'maxed'});
+	globalThis.api.receive('window', (maxed: boolean) => windowStore.set(maxed));
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href='https://svelte.dev/tutorial'>Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	<div>
-    We are using Node.js <span class=version>{node}</span>,
-    Chromium <span class=version>{chrome}</span>,
-    and Electron <span class=version>{electron}</span>.
+<div class=app>
+	<Menu>
+		<Nav routes={Object.keys(routes)}/>
+	</Menu>
+	<div class=app-panel>
+		<Header label={startCase($location)} />
+		<div class=app-panel-page>
+			<Router {routes}/>
+		</div>
 	</div>
-</main>
+	<div class=app-window-actions>
+		<button on:click={globalThis.windowAPI.minimize}>
+			<Icon id=min {...iconSize}/>
+		</button>
+		<button on:click={globalThis.windowAPI.toggle}>
+			<Icon id={$windowStore ? 'window' : 'max'} {...iconSize}/>
+		</button>
+		<button on:click={globalThis.windowAPI.close}>
+			<Icon id=close {...iconSize}/>
+		</button>
+	</div>
+</div>
 
 <style lang=scss>
-	main {
-		overflow-y: auto;
-		text-align: center;
-		max-width: 240px;
+	.app {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		border: 1px;
+		border-left: 0;
+		border-radius: 2rem;
+		background: white;
 
-		.version {
-			color: #ff3e00;
+		&-panel {
+			width: 100%;
+			height: 100%;
+
+			&-page {
+				padding: 1rem;
+			}
 		}
+		&-window-actions {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: flex;
+			-webkit-app-region: no-drag;
 
-		h1 {
-			color: #ff3e00;
-			text-transform: uppercase;
-			font-size: 4em;
-			font-weight: 100;
-		}
-	}
+			button {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: white;
+				border: 0;
+				padding: 0.25rem 0.5rem;
+				box-shadow: none;
+				outline: none;
+				cursor: pointer;
+				transition: all 0.2s linear;
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
+				&:hover {
+					background: lightgray;
+				}
+
+				&:last-of-type:hover {
+					background: red;
+				}
+
+				&:first-of-type {
+					border-radius: 0 0 0 5px;
+				}
+			}
 		}
 	}
 </style>

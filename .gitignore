@@ -2,3 +2,6 @@
 .vscode
 .DS_Store
 /out/**/*
+dist/www/build/**/*
+dist/www/assets
+dist/*.js
