@@ -1,9 +1,9 @@
 <script lang=ts>
-
+  export let appearance = 'default';
 </script>
 
-<button>
-  
+<button class='btn-{appearance}'>
+  <slot/>
 </button>
 
 <style lang=scss>

@@ -26,6 +26,8 @@ const createWindow = async () => {
     mainWindow.webContents.openDevTools();
     await mainWindow.loadFile(join(__dirname, 'www', 'index.html'));
     mainWindow.once('ready-to-show', mainWindow.show);
+    mainWindow.on('maximize', () => mainWindow?.webContents.send('window', true));
+    mainWindow.on('unmaximize', () => mainWindow?.webContents.send('window', false));
   }
 };
 

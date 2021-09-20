@@ -40,10 +40,20 @@ export default {
 	},
 	plugins: [
 		svelte({
-			preprocess: sveltePreprocess({ sourceMap: !production }),
+			preprocess: sveltePreprocess({
+				sourceMap: !production,
+				postcss: {
+					plugins: [
+						require('postcss-import'),
+						require('tailwindcss'),
+						require('postcss-preset-env')({ stage: 1 })
+					]
+				}
+			}),
 			compilerOptions: {
 				// enable run-time checks when not in production
-				dev: !production
+				dev: !production,
+				hydratable: true
 			}
 		}),
 		// we'll extract any component CSS out into
