@@ -1,6 +1,6 @@
 <script lang=ts>
   import { link, location } from 'svelte-spa-router';
-  import { kubeCase } from '../lib';
+  import { kubeCase } from '@lib';
 
   export let route: string;
   export let subRoute: string;

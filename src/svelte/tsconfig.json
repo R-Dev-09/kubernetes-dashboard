@@ -3,7 +3,15 @@
   "compilerOptions": {
     "target": "es2020",
     "rootDir": "",
-    "outDir": "../../dist/www/"
+    "outDir": "../../dist/www/",
+    "paths": {
+      "@UI": ["./UI"],
+      "@UI/*": ["./UI/*"],
+      "@pages": ["./pages"],
+      "@pages/*": ["./pages/*"],
+      "@lib": ["./lib"],
+      "@lib/*": ["./lib/*"]
+    }
   },
   "lib": ["es2020", "dom"]
 }

@@ -1,0 +1,1 @@
+<div class='bg-white rounded-lg shadow-xl w-1/2 h-full'/>

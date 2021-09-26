@@ -1,6 +1,6 @@
 <script lang=ts>
-  import Icon from './Icon.svelte';
-  import { windowStore } from '../lib';
+  import { Icon } from '@UI';
+  import { windowStore } from '@lib';
 
   const iconSize = {height: '18', width: '18'};
 </script>
@@ -23,7 +23,7 @@
 
 <style lang=scss>
 	button {
-		@apply flex items-center justify-center border-none py-1 px-2 shadow-none outline-none transition cursor-default rounded hover:bg-warm-gray-200 active:bg-warm-gray-300;
+		@apply flex items-center justify-center bg-white border-none py-1 px-2 shadow-xl outline-none transition cursor-default rounded hover:bg-warm-gray-200 active:bg-warm-gray-300;
 
 		:global(.icon) {
 			@apply fill-current text-black;

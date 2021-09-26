@@ -3,10 +3,12 @@ const { coolGray, warmGray } = require('tailwindcss/colors');
 const isProduction = !process.env.ROLLUP_WATCH;
 
 module.exports = {
+  mode: 'jit',
   purge: {
     content: [
       './src/svelte/**/*.svelte',
-      './src/svelte/**/*.html'
+      './src/svelte/**/*.html',
+      './dist/www/index.html'
     ],
     defaultExtractor: content => {
       const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
@@ -33,25 +35,8 @@ module.exports = {
         sans: ['Ubuntu', ...fontFamily.sans]
       },
       spacing: {
-        '100': '25rem',
         'px-2': '2px'
       },
-      minWidth: {
-        '28': '7rem'
-      },
-      maxWidth: {
-        '80': '20rem'
-      },
-      borderRadius: {
-        '2lg': '1.25rem'
-      }
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['hover', 'active'],
-      zIndex: ['hover', 'active'],
-      boxShadow: ['active']
     },
   },
   plugins: [],
