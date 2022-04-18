@@ -5,9 +5,7 @@
   export let width = '24';
   export let height = '24';
   export let fill = 'black';
-  export let classes: string = '';
-
-  $: iconId = !!ICONS[id] ? id : 'unknown';
+  export let classes = '';
 </script>
 
 <svg
@@ -18,7 +16,7 @@
   {height}
   {fill}
   style='min-width: {width}; min-height: {height};'
-  class='{classes} icon {id} transition-colors fill-current text-{fill}'
+  class='{classes} icon {id} transition-colors duration-200 fill-current text-{fill}'
 >
-  {@html ICONS[iconId]}
+  {@html ICONS[id] || ICONS['unknown']}
 </svg>

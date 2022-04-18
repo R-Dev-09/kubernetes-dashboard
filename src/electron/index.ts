@@ -18,12 +18,12 @@ const createWindow = async () => {
         nodeIntegration: false,
         contextIsolation: true,
         sandbox: true,
-        devTools: true,
+        devTools: process.env.NODE_ENV !== 'production',
         preload: join(__dirname, 'preload.js')
       }
     });
     // mainWindow.maximize();
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
     await mainWindow.loadFile(join(__dirname, 'www', 'index.html'));
     mainWindow.once('ready-to-show', mainWindow.show);
     mainWindow.on('maximize', () => mainWindow?.webContents.send('window', true));

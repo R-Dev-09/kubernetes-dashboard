@@ -1,6 +1,6 @@
 <script lang=ts>
-  import { Icon } from '@UI';
-  import { windowStore } from '@lib';
+  import Icon from './Icon.svelte';
+  import { windowMaximized } from '@lib';
 
   const iconSize = {height: '18', width: '18'};
 </script>
@@ -14,7 +14,7 @@
 		<Icon id=min {...iconSize}/>
 	</button>
 	<button on:click={globalThis.windowAPI.toggle}>
-		<Icon id={$windowStore ? 'window' : 'max'} {...iconSize}/>
+		<Icon id={$windowMaximized ? 'window' : 'max'} {...iconSize}/>
 	</button>
 	<button on:click={globalThis.windowAPI.close}>
 		<Icon id=close {...iconSize}/>

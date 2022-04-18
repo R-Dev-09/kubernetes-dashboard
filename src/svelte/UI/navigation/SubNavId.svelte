@@ -8,9 +8,9 @@
 </script>
 
 <div transition:fade={{duration: 200}}>
-  <span class='text-sm text-warm-gray-400 font-normal inline-block' transition:fade={{duration: 200}}>{'<'}</span>
+  <span class='text-sm text-warm-gray-400 font-normal inline-block' transition:fade={{duration: 150}}>{'<'}</span>
   {#key abbrSub}
-    <span class='text-sm text-warm-gray-400 font-normal inline-block' in:fly={{y: -20, duration: 200}}>{abbrSub}</span>
+    <span class='text-sm text-warm-gray-400 font-normal inline-block' in:fly={{y: -20, duration: 150}}>{abbrSub}</span>
   {/key}
-  <span class='text-sm text-warm-gray-400 font-normal inline-block' transition:fade={{duration: 200}}>{'>'}</span>
+  <span class='text-sm text-warm-gray-400 font-normal inline-block' transition:fade={{duration: 150}}>{'>'}</span>
 </div>

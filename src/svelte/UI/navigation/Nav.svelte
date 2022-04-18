@@ -1,5 +1,5 @@
 <script lang=ts>
-  import { NavItem } from '@UI/navigation';
+  import NavItem from './NavItem.svelte';
 
   export let routes: string[];
   

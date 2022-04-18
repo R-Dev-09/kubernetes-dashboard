@@ -1,5 +1,5 @@
 <script lang=ts>
-  import { Search } from '@UI';
+  import Search from './Search.svelte';
 
   export let label: string;
 </script>

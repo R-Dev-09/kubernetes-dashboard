@@ -4,8 +4,9 @@
   import { location, link } from 'svelte-spa-router';
   import { camelCase } from 'lodash/string';
   import { Icon } from '@UI';
-  import { SubNavItemList, SubNavId } from '@UI/navigation';
-  import { kubeCase } from '@lib';
+  import SubNavItemList from './SubNavItemList.svelte';
+  import SubNavId from './SubNavId.svelte';
+  import { kubeCase, menuExpanded } from '@lib';
 
   export let route: string;
   export let subRoutes: string[];
@@ -32,9 +33,11 @@
     href={route}
     use:link
   >
-    <div class='flex items-center'>
+    <div class='flex items-center flex-initial'>
       <Icon id={camelCase(route)} classes={isActive(route) ? 'active-nav-icon' : ''}/>
-      <span class=ml-6>{kubeCase(route)}</span>
+      {#if $menuExpanded}
+        <span class=ml-6>{kubeCase(route)}</span>
+      {/if}
     </div>
     {#if !!subRoutes.length && !!activeSub}
       <SubNavId {activeSub}/>

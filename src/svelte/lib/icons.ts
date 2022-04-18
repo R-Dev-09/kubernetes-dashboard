@@ -64,17 +64,13 @@ export const ICONS: Record<string, string> = {
     <path d='M0 0h24v24H0z' fill=none />
     <path d='M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z' />
   `,
-  collapse: `
-    <g>
-      <rect fill=none height=24 width=24 />
-    </g>
-    <g>
-      <path d='M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M9.5,16.5v-9l7,4.5L9.5,16.5z' />
-    </g>
+  expand: `
+    <rect fill=none height=24 width=24 />
+    <path d='M8.5,8.62v6.76L5.12,12L8.5,8.62 M10,5l-7,7l7,7V5L10,5z M14,5v14l7-7L14,5z' />
   `,
-  'collapse-outlined': `
-    <path d='M0 0h24v24H0z' fill=none />
-    <path d='M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' />
+  collapse: `
+    <rect fill=none height=24 transform='matrix(-1 -1.224647e-16 1.224647e-16 -1 24 24)' width=24 />
+    <path d='M15.5,15.38V8.62L18.88,12L15.5,15.38 M14,19l7-7l-7-7V19L14,19z M10,19V5l-7,7L10,19z' />
   `,
   unknown: `
     <path d='M0 0h24v24H0V0z' fill=none />

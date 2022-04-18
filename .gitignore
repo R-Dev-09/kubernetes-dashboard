@@ -2,6 +2,10 @@
 .vscode
 .DS_Store
 /out/**/*
-dist/www/build/**/*
-dist/www/assets
-dist/*.js
+dist/**/*.js
+dist/**/*.js.map
+dist/www/build/
+dist/www/lib
+dist/www/pages
+dist/www/UI
+pnpm-lock.yaml

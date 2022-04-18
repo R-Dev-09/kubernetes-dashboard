@@ -3,11 +3,11 @@
 	import Router, { location, replace } from 'svelte-spa-router';
 	import { Menu, Header, Frame, Icon } from '@UI';
 	import { Nav } from '@UI/navigation';
-	import { routes, windowStore } from '@lib';
+	import { routes, windowMaximized, menuExpanded } from '@lib';
 
 	onMount(() => {
 		globalThis.api.send({channel: 'window', req: 'maxed'});
-		globalThis.api.receive('window', windowStore.set);
+		globalThis.api.receive('window', windowMaximized.set);
 	});
 
 	replace('/cluster');
@@ -22,9 +22,11 @@
 		<div class='bg-white rounded-tl-xl h-full w-full z-10'>
 			<Router {routes}/>
 		</div>
-		<div class='absolute bottom-0 -left-16 rounded-[1.25rem] shadow-2xl bg-white p-4 flex align-center'>
-			<Icon id=collapse width=18 height=18 classes='rotate-180'/>
-			<span class=text-sm>collapse</span>
+		<div class='absolute bottom-0 -left-28 rounded-l-[1.25rem] bg-white p-4 flex items-center space-x-4 cursor-pointer' on:click={() => menuExpanded.set(!$menuExpanded)}>
+			<Icon id={$menuExpanded ? 'collapse' : 'expand'} width=20 height=20/>
+			{#if $menuExpanded}
+				<span class=text-sm>collapse</span>
+			{/if}
 		</div>
 	</div>
 </Frame>

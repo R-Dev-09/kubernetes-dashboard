@@ -1,3 +1,5 @@
 import { writable } from 'svelte/store';
 
-export const windowStore = writable(true);
+export const windowMaximized = writable(true);
+
+export const menuExpanded = writable(true);
